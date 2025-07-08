@@ -20,8 +20,9 @@ function addTask(){
 }
 //we are adding an event listener for checking and deletion of task 
 listContainer.addEventListener("click",function(e){
-    if(e.target.tagName === "LI"){ //if clicked on LI in the container, then it should check the ticked object
-    e.target.classList.toggle("ticked"); 
+    //e.target is what user clicked on
+    if(e.target.tagName === "LI"){ //if clicked on LI in the container, 
+    e.target.classList.toggle("ticked");// then it should add or remove the ticked class
     saveData();
     }else if(e.target.tagName === "SPAN"){ //and if target on Span than it should delete the element
         e.target.parentElement.remove(); //parent Element is the LI element it will get removed
