@@ -8,6 +8,47 @@ inputBox.addEventListener("keydown", function(e) {
     }
 });
 
+listContainer.addEventListener("dblclick", function(e) {
+    if (e.target.tagName === "LI") {
+        const li = e.target;
+
+        //save the current text excluding the deleted span
+        const currentText = li.firstChild.textContent.trim();
+
+        // Clear existing content inside li
+        li.innerHTML = '';
+
+        // Create an input element
+        const input = document.createElement("input");
+        input.type = "text"; //if left tp this, user have to type again everything from scratch
+        input.value = currentText; //this to fill the input box with that existing text
+
+        // Add input to li
+        li.appendChild(input);
+        input.focus();
+        
+        function saveEdit() {
+            // Replace input with updated text
+            const newText = input.value.trim();
+
+            if (newText !== '') {
+                li.innerHTML = newText;
+
+                // Re-attach the delete (×) span
+                const span = document.createElement("span");
+                span.innerHTML = "\u00d7";
+                li.appendChild(span);
+
+                saveData(); // Save to localStorage
+            } else {
+                // Optionally delete the task if input is empty
+                li.remove();
+                saveData();
+            }
+        }
+    }
+});
+
 function addTask(){ 
     if(inputBox.value === ''){
         alert("You must write something!");
