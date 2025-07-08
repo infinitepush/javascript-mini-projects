@@ -26,7 +26,34 @@ listContainer.addEventListener("dblclick", function(e) {
         // Add input to li
         li.appendChild(input);
         input.focus();
-        
+
+         // Save on Enter 
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                saveEdit();
+            }
+        });
+        function saveEdit() {
+            // Replace input with updated text
+            const newText = input.value.trim();
+
+            if (newText !== '') {
+                li.innerHTML = newText;
+
+                // Re-attach the delete (×) span
+                const span = document.createElement("span");
+                span.innerHTML = "\u00d7";
+                li.appendChild(span);
+
+                saveData(); // Save to localStorage
+            } else {
+                // Optionally delete the task if input is empty
+                li.remove();
+                saveData();
+            }
+        }
+    }
+});
         function saveEdit() {
             // Replace input with updated text
             const newText = input.value.trim();
