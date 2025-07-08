@@ -73,9 +73,6 @@ listContainer.addEventListener("dblclick", function(e) {
                 saveData();
             }
         }
-    }
-});
-
 function addTask(){ 
     if(inputBox.value === ''){
         alert("You must write something!");
