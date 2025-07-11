@@ -11,4 +11,5 @@ function generateQR() {
     }
 }
 let button = document.getElementById("btn");
-button.addEventListener("click", generateQR);  
+button.addEventListener("click", generateQR);
+//this is working now  
